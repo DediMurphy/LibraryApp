@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JetPerpustakaan</string>
+    <string name="scroll_to_top">Scroll to Top</string>
+    <string name="menu_home">Home</string>
+    <string name="save_page">Collection</string>
+    <string name="about_page">About Me</string>
+    <string name="search_books">Cari Buku Favorit Mu</string>
+    <string name="username">Dedi Murphy</string>
+    <string name="email">dedimurphy05@gmail.com</string>
+    <string name="back">Back</string>
+
+    <string name="argument">rewardId</string>
+</resources>
