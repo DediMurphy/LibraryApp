@@ -2,14 +2,18 @@ package com.latihan.jetperpustakaan.ui.screen.detail
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,9 +32,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -112,11 +122,21 @@ fun DetailContent(
                     Image(
                         painter = painterResource(image),
                         contentDescription = null,
+                        contentScale = ContentScale.Crop,
                         alignment = Alignment.Center,
-                        modifier = modifier
-                            .height(300.dp)
+                        modifier = Modifier
                             .fillMaxSize()
-                    )
+                            .drawWithCache {
+                                val gradient = Brush.verticalGradient(
+                                    colors = listOf(Color.Transparent, Color.LightGray),
+                                    startY = size.height / 5,
+                                    endY = size.height
+                                )
+                                onDrawWithContent {
+                                    drawContent()
+                                    drawRect(gradient, blendMode = BlendMode.Multiply)
+                                }
+                            })
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = stringResource(R.string.back),
@@ -125,30 +145,36 @@ fun DetailContent(
                             .clickable { onBackClick() }
                     )
                 }
-                Column(modifier = modifier.padding(8.dp)) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .offset(y = (-32).dp)
+                        .background(
+                            MaterialTheme.colorScheme.background,
+                            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
+                        )
+                        .padding(start = 16.dp, top = 24.dp, end = 16.dp)
+                ) {
                     Text(
                         text = nameBook,
-                        style = MaterialTheme.typography.labelLarge.copy(
-                            fontWeight = FontWeight.Bold
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.headlineSmall.copy(
+                            fontWeight = FontWeight.ExtraBold,
                         ),
+                        color = MaterialTheme.colorScheme.primary,
                     )
                     Text(
-                        text = author,
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
+                        text = author, style = MaterialTheme.typography.labelSmall.copy(
+                            fontWeight = FontWeight.Medium
+                        ), color = MaterialTheme.colorScheme.secondary
                     )
-                    Text(
-                        text = releaseDate,
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            fontWeight = FontWeight.Bold
-                        ),
-                    )
-                    Spacer(modifier = modifier.height(10.dp))
                     Text(
                         text = description,
-                        style = MaterialTheme.typography.bodyMedium.copy(
-                            fontWeight = FontWeight.Medium
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Justify,
+                        modifier = Modifier.padding(
+                            top = 12.dp, start = 16.dp, end = 16.dp, bottom = 12.dp
                         )
                     )
                 }
