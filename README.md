@@ -3,6 +3,8 @@
 ## Project Description
 Welcome to the Library App project developed using Jetpack Compose. This project is the final assignment of the Jetpack Compose course at Dicoding, where you will find various features that have been learned throughout the course.
 
+![mylibraryapp](https://github.com/DediMurphy/LibraryApp/assets/99854509/f54f0b3a-1ed3-448f-894d-30221c62bfe6)
+
 In this project, there are the following pages:
 - A List Page displaying data in list format using LazyList.
 - A Detail Page displaying relevant information about the selected item.
@@ -21,4 +23,4 @@ To run this project locally, follow these steps:
 1. Ensure you have Android Studio installed.
 2. Clone this repository:
    ```bash
-   git clone https://github.com/LibraryApp
+   git clone https://github.com/LibraryApp.git
