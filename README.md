@@ -3,7 +3,7 @@
 ## Project Description
 Welcome to the Library App project developed using Jetpack Compose. This project is the final assignment of the Jetpack Compose course at Dicoding, where you will find various features that have been learned throughout the course.
 
-<img src="https://github.com/DediMurphy/LibraryApp/assets/99854509/f54f0b3a-1ed3-448f-894d-30221c62bfe6" alt="My Library App" width="200" />
+<img src="https://github.com/DediMurphy/LibraryApp/assets/99854509/f54f0b3a-1ed3-448f-894d-30221c62bfe6" alt="My Library App" width="1000" />
 
 In this project, there are the following pages:
 - A List Page displaying data in list format using LazyList.
